@@ -55,3 +55,10 @@
   "Main execution loop - prints out a random world's evolution once per second."
   [& args]
   ((ncycles (generate-rand-world 85) -1 1000)))
+
+
+(defn world-history [cycles world]
+  "Return a list of 'cycles' world states, generated via the update-world function"
+  (if (= cycles 0)
+    (list world)
+    (cons world (world-history (- cycles 1) (update-world world)))))
